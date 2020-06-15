@@ -40,7 +40,7 @@ let () = assert (myStrings(myInts) == ["1", "2", "3", "4", "5"]);
   Exercise: implement the value [myNewInts], which is obtained by adding 1 to
   each element of [myInts]
  */
-let myNewInts = ints => failwith("For you to implement");
+let myNewInts = ints => List.map(x => x + 1, ints)
 
 /*
   If the function you want to perform on each element of your list is one that
@@ -77,7 +77,7 @@ let () = assert (sumOfMyInts(myInts) == 15);
   Hint: Use the infix operator `mod`.
     (4 mod 2 == 0)
  */
-let numEvenInts = ints => failwith("For you to implement");
+let numEvenInts = ints => List.find(x => x mod 2 == 0, ints)
 
 /*
   Here's one more example of a useful list function: [List.find]:
@@ -89,7 +89,13 @@ let firstNumGreaterThan3 = ints => List.find(x => x > 3, ints);
 
 let () = assert (firstNumGreaterThan3(myInts) == 4);
 
+let myIter = ints => {
+  List.iter(x => Js.log("Here's the x value: " ++ string_of_int(x)), ints)
+  None
+}
+
 Test.runAll([
   (myNewInts(myInts) == [2, 3, 4, 5, 6], "my new ints"),
+  (myIter(myInts) == None, "Iter"),
   (numEvenInts(myInts) == 2, "num even ints"),
 ]);
